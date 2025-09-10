@@ -1,0 +1,83 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+
+<style>
+    body {
+        background: linear-gradient(to right, #e8edf1, #f5f7fa);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chart-wrapper {
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 30px;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    .chart-title {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    #chartContainer {
+        height: 450px;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .chart-wrapper {
+            padding: 20px;
+        }
+        .chart-title {
+            font-size: 1.4rem;
+        }
+    }
+</style>
+
+<script>
+window.onload = function() {
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: {
+            text: "{{ chart_title|default:'' }}"
+        },
+        data: [{
+            {% if chart_type == "rangeSplineArea" %}
+                type: "rangeSplineArea",
+            {% elif chart_type == "pie" %}
+                type: "pie",
+            {% elif chart_type == "spline" %}
+                type: "spline",
+            {% else %}
+                type: "column",
+            {% endif %}
+            indexLabelFontSize: 14,
+            yValueFormatString: "##0.00\"%\"",
+            indexLabel: "{label} - {y}",
+            dataPoints: [
+                {% for o in form %}
+                    { y: {{ o.dcount }}, label: "{{ o.names }}" },
+                {% endfor %}
+            ]
+        }]
+    });
+    chart.render();
+}
+</script>
+
+<div class="chart-wrapper">
+    <div class="chart-title">📈 Student Behavior Change Insights</div>
+    <div id="chartContainer"></div>
+</div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+{% endblock %}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Provider Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Background Gradient with Shape Overlay */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #e8edff);
+            position: relative;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at center, #007bff55, transparent);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at center, #6610f255, transparent);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .mainholder {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #222;
+            margin: 40px 0 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Navbar styling */
+        .topnav {
+            background: linear-gradient(45deg, #007bff, #6610f2);
+            padding: 12px 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .topnav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .topnav a:hover {
+            background-color: #ffffff;
+            color: #007bff;
+            transform: scale(1.05);
+        }
+
+        .topnav a.active {
+            background-color: #ff416c;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+                padding: 0 10px;
+            }
+
+            .topnav {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Predicting Behavior Change in Students With Special Education Needs Using Multimodal Learning Analytics</h1>
+
+    <div class="topnav">
+        <a href="{% url 'train_model' %}">Browse & Train/Test Data Sets</a>
+        <a href="{% url 'likeschart' 'bar' %}">Bar Chart Accuracy</a>
+        <a href="{% url 'charts1' 'line' %}">Accuracy Line Chart</a>
+        <a href="{% url 'View_Prediction_Of_Student_Behavior_Type' %}">Prediction Results</a>
+        <a href="{% url 'View_Student_Behavior_Type_Ratio' %}">Behavior Ratio</a>
+        <a href="{% url 'Download_Trained_DataSets' %}">Download Data</a>
+        <a href="{% url 'charts' 'line' %}">Ratio Chart</a>
+        <a href="{% url 'View_Remote_Users' %}">Remote Users</a>
+        <a href="{% url 'index' %}">Logout</a>
+    </div>
+
+    <div class="mainholder">
+        {% block researchblock %}
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
