@@ -1,4 +1,3 @@
-# SEN-Behavior-Prediction
 # Predicting Behavior Change in Special Education Needs(SEN) Students Using MMLA
 
 ## Overview
