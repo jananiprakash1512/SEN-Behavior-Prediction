@@ -1,0 +1,110 @@
+{% extends 'RUser/Header.html' %}
+{% block userblock %}
+
+<!-- Styling in line with index.html -->
+<style>
+  body {
+      background-color: #f0f2f5;
+      font-family: 'Montserrat', sans-serif;
+  }
+
+  .profile-section {
+      background: #fff;
+      padding: 40px 30px;
+      margin: 30px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 1200px;
+  }
+
+  .profile-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #007bff;
+  }
+
+  .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+  .table th,
+  .table td {
+      border: 1px solid #dee2e6;
+      padding: 12px 15px;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 1rem;
+  }
+
+  .table th {
+      background-color: #007bff;
+      color: #fff;
+      font-weight: 600;
+  }
+
+  .table td {
+      background-color: #fff;
+      color: #333;
+  }
+
+  @media (max-width: 768px) {
+      .table th,
+      .table td {
+          display: block;
+          width: 100%;
+      }
+  }
+</style>
+
+<div class="container">
+  <div class="profile-section">
+      <h2 class="profile-title">Your Profile Details</h2>
+      <div class="table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Address</th>
+                      <th>Mob No</th>
+                      <th>Country</th>
+                      <th>State</th>
+                      <th>City</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>{{ object.username }}</td>
+                      <td>{{ object.email }}</td>
+                      <td>{{ object.gender }}</td>
+                      <td>{{ object.address }}</td>
+                      <td>{{ object.phoneno }}</td>
+                      <td>{{ object.country }}</td>
+                      <td>{{ object.state }}</td>
+                      <td>{{ object.city }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<!-- GSAP Animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+  gsap.from(".profile-section", {
+      duration: 1.2,
+      opacity: 0,
+      y: 50,
+      ease: "power3.out"
+  });
+</script>
+
+
+
+{% endblock %}
